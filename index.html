@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stock Prediction Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <h1>Stock Market Prediction Game</h1>
+        <p>Guess if tomorrow's price will go up or down.</p>
+      </header>
+
+      <section class="controls">
+        <form id="ticker-form" class="ticker-form" autocomplete="off">
+          <label for="ticker-input">Enter stock ticker</label>
+          <div class="ticker-row">
+            <input id="ticker-input" name="ticker" placeholder="e.g., MSFT, AAPL, COF" required />
+            <button id="load-btn" type="submit">Load</button>
+          </div>
+          <div id="form-help" class="help">Uses Alpha Vantage real market data.</div>
+        </form>
+        <div id="error" class="error" role="alert" aria-live="polite"></div>
+      </section>
+
+      <section id="game" class="game hidden">
+        <div class="game-top">
+          <div class="stat">
+            <div class="stat-label">Symbol</div>
+            <div id="symbol" class="stat-value">—</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Current date</div>
+            <div id="current-date" class="stat-value">—</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Current close</div>
+            <div id="current-close" class="stat-value">—</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Score</div>
+            <div id="score" class="stat-value">0</div>
+          </div>
+        </div>
+
+        <div class="chart-wrap">
+          <canvas id="chart" height="120"></canvas>
+        </div>
+
+        <div class="actions">
+          <button id="predict-up" class="action" disabled>Predict Up</button>
+          <button id="predict-down" class="action" disabled>Predict Down</button>
+          <button id="end-game" class="end">End Game</button>
+        </div>
+
+        <div id="round-msg" class="round-msg" aria-live="polite"></div>
+      </section>
+
+      <footer class="footer">
+        <div>
+          Data source: <a href="https://www.alphavantage.co/" target="_blank" rel="noreferrer">Alpha Vantage</a>
+        </div>
+        <div>
+          Built for GitHub Pages (static site)
+        </div>
+      </footer>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+  </html>
+
